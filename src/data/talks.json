@@ -1,0 +1,29 @@
+[
+  {
+    "title": "some title",
+    "abstract": "very abstract",
+    "givenAt": [
+      {
+        "name": "some group",
+        "date": "2020-01-01",
+        "link": "https://www.meetup.com"
+      },
+      {
+        "name": "some group",
+        "date": "2020-01-01",
+        "link": "https://www.meetup.com"
+      }
+    ]
+  },
+  {
+    "title": "Talk 2",
+    "abstract": "very abstract",
+    "givenAt": [
+      {
+        "name": "some group",
+        "date": "2020-01-01",
+        "link": "https://www.meetup.com"
+      }
+    ]
+  }
+]

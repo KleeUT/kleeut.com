@@ -11,14 +11,21 @@
     "gatsby-plugin-offline": "^3.0.32",
     "gatsby-plugin-react-helmet": "^3.1.21",
     "gatsby-plugin-sharp": "^2.4.3",
-    "gatsby-source-filesystem": "^2.1.46",
+    "gatsby-plugin-typescript": "^2.2.2",
+    "gatsby-source-filesystem": "^2.1.50",
+    "gatsby-transformer-json": "^2.2.27",
     "gatsby-transformer-sharp": "^2.3.13",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^5.2.1"
+    "react-helmet": "^5.2.1",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
+    "@types/react-helmet": "^5.0.15",
+    "@typescript-eslint/eslint-plugin": "^2.22.0",
+    "@typescript-eslint/parser": "^2.22.0",
+    "eslint": "^6.8.0",
     "prettier": "^1.19.1"
   },
   "keywords": [
@@ -26,6 +33,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "type-check": "tsc --rootDir src --noEmit",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
