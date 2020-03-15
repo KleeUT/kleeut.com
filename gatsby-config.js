@@ -1,8 +1,10 @@
+/* eslint disable */
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Klee Thomas - Software Crafter`,
+    description:
+      "Klee Thomas, Software Crafter, Newcastle Coders Group Organiser",
+    author: `@kleeut`,
   },
   plugins: [
     `gatsby-plugin-typescript`,
@@ -40,4 +42,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};

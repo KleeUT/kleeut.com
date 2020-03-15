@@ -6,6 +6,8 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
   ],
   settings: {
     react: {
@@ -29,13 +31,14 @@ module.exports = {
     "react/prop-types": "off", // Disable prop-types as we use TypeScript for type checking
     "@typescript-eslint/explicit-function-return-type": "off",
   },
+  ignorePatterns: ["gatsby-*.js"],
   overrides: [
     // Override some TypeScript rules just for .js files
     {
-      files: ["*.js"],
+      files: ["src/*.js", "src/*.jsx", "src/*.tsx", "src/*.ts"],
       rules: {
         "@typescript-eslint/no-var-requires": "off", //
       },
     },
   ],
-}
+};
