@@ -3,6 +3,9 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
+import styled from "styled-components";
+import { PrimaryColor } from "../colors";
+import { PageHeading } from "../components/headings";
 
 const talksQuery = graphql`
   query MyQuery {
@@ -48,33 +51,85 @@ const objectify = (graph: TalkQueryReturnType): Array<Talk> => {
     givenAt: y.givenAt.map(z => ({ ...z, date: new Date(z.date) })),
   }));
 };
+const TalksTable = styled.table`
+  border-collapse: collapse;
+  tr {
+  }
+  td:first-of-type,
+  th:first-of-type {
+    border-left: 0;
+  }
+  tr:last-of-type {
+    td {
+      border-bottom: 0;
+    }
+  }
+  td,
+  th {
+    padding: 1rem;
+    border-bottom: 1px solid ${PrimaryColor};
+    border-left: 1px solid ${PrimaryColor};
+  }
+  th {
+    /* visibility: hidden; */
+    padding: 0 1rem 1rem 1rem;
 
-const TalksGrid = ({ talks }: { talks: Array<Talk> }) => (
-  <table>
+    text-align: left;
+  }
+`;
+
+const TalksGrid = ({ talks }: { talks: Array<DateBasedTalk> }) => (
+  <TalksTable>
     <thead>
       <tr>
-        <th>Title</th>
+        <th>Date</th>
+        <th>Talk</th>
+        <th>Event</th>
       </tr>
     </thead>
     <tbody>
       {talks.map(talk => {
         return (
-          <tr key={talk.title}>
+          <tr key={`${talk.title}${talk.eventName}`}>
+            <td>{talk.date.toLocaleDateString()}</td>
             <td>{talk.title}</td>
+            <td>{talk.eventName}</td>
           </tr>
         );
       })}
     </tbody>
-  </table>
+  </TalksTable>
+);
+
+interface DateBasedTalk {
+  title: string;
+  date: Date;
+  eventName: string;
+  link: string;
+}
+
+const NotSpeaking = () => (
+  <p>Thanks to COVID 19 I'm not currently speaking :(</p>
 );
 
 const IndexPage = () => {
   const talks = objectify(useStaticQuery(talksQuery));
+  const talkIntances: DateBasedTalk[] = talks.flatMap(talk =>
+    talk.givenAt.map(event => ({
+      eventName: event.name,
+      date: event.date,
+      link: event.link,
+      title: talk.title,
+    }))
+  );
+  talkIntances.sort((x, y) => y.date.valueOf() - x.date.valueOf());
+
   return (
     <Layout>
       <SEO title="Talks" />
-      <TalksGrid talks={talks} />
-      <Link to="/page-2/">Go to page 2</Link>
+      <NotSpeaking />
+      <PageHeading>Past Talks</PageHeading>
+      <TalksGrid talks={talkIntances} />
     </Layout>
   );
 };
