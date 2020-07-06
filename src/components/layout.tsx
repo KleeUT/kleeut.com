@@ -64,7 +64,7 @@ const Main = styled.main`
 `;
 const Footer = styled.footer`
   max-height: 1rem;
-  border: 1px solid red;
+  border-top: 3px solid #ff0000;
 `;
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const data = useStaticQuery(graphql`
@@ -92,5 +92,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+export const Content = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 export default Layout;

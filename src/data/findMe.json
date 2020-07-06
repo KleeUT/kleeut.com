@@ -1,0 +1,11 @@
+[
+  { "title": "Twitter", "target": "https://twitter.com/kleeut" },
+  { "title": "Dev.to", "target": "https://dev.to/kleeut" },
+  { "title": "Blog", "target": "https://blog.kleeut.com" },
+  { "title": "GitHub", "target": "https://github.com/kleeut" },
+  { "title": "Linked In", "target": "https://www.linkedin.com/in/kleeut/" },
+  {
+    "title": "Newcastle Coders Group Meetup",
+    "target": "https://www.meetup.com/Newcastle-Coders-Group/"
+  }
+]

@@ -109,7 +109,7 @@ interface DateBasedTalk {
 }
 
 const NotSpeaking = () => (
-  <p>Thanks to COVID 19 I'm not currently speaking :(</p>
+  <p>Thanks to COVID 19 I&#39;m not currently speaking :(</p>
 );
 
 const IndexPage = () => {

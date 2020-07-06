@@ -1,0 +1,9 @@
+[
+  { "title": "Salad Simulator", "target": "https://saladsimulator.com" },
+  { "title": "$$$ Meeting Timer", "target": "https://themeetingtimer.info/" },
+  {
+    "title": "Drink Calculator",
+    "target": "https://drinkcalculator.kleeut.com/"
+  },
+  { "title": "Stupid Estimator", "target": "https://estimator.kleeut.com/" }
+]
