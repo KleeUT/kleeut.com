@@ -4,7 +4,7 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import styled from "styled-components";
-import { PrimaryColor } from "../colors";
+import { PrimaryColor, HighlightColor } from "../colors";
 import { PageHeading } from "../components/headings";
 
 const talksQuery = graphql`
@@ -42,6 +42,34 @@ type TalkQueryReturnType = {
       }
     ];
   };
+};
+
+const Box = styled.div`
+  border: 2px solid ${HighlightColor};
+  padding: 1rem;
+`;
+const bioQuery = graphql`
+  query SpeakerBio {
+    bioJson {
+      speakerBio
+    }
+  }
+`;
+type SpeakerBioReturnType = {
+  bioJson: {
+    id: string;
+    speakerBio: string;
+  };
+};
+const Bio = ({ bioData }: { bioData: SpeakerBioReturnType }): JSX.Element => {
+  return (
+    <section>
+      <h1>Speaker Bio</h1>
+      <Box>
+        <p>{bioData.bioJson.speakerBio}</p>
+      </Box>
+    </section>
+  );
 };
 
 const objectify = (graph: TalkQueryReturnType): Array<Talk> => {
@@ -123,11 +151,13 @@ const IndexPage = () => {
     }))
   );
   talkIntances.sort((x, y) => y.date.valueOf() - x.date.valueOf());
+  const bioData = useStaticQuery(bioQuery);
 
   return (
     <Layout>
       <SEO title="Talks" />
       <NotSpeaking />
+      <Bio bioData={bioData} />
       <PageHeading>Past Talks</PageHeading>
       <TalksGrid talks={talkIntances} />
     </Layout>

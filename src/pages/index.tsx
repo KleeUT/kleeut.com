@@ -8,7 +8,6 @@ const IndexPage = () => (
     <SEO title="Home" />
     <Content>
       <MenuItem to="/talks/">Speaking</MenuItem>
-      <MenuItem to="/aboutMe/">Speaker Bio</MenuItem>
       <MenuItem to="/findMe/">Find Me</MenuItem>
       <MenuItem to="/projects/">Projects</MenuItem>
     </Content>
