@@ -43,6 +43,8 @@
     "type-check": "tsc --rootDir src --noEmit",
     "build": "gatsby build",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prettier:check": "prettier --check ./**/*.json ./**/*.tsx ./**/*.ts",
+    "prettier:write": "prettier --write ./**/*.json ./**/*.tsx ./**/*.ts",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "start": "npm run develop",

@@ -8,7 +8,7 @@ import { PrimaryColor, HighlightColor } from "../colors";
 import { PageHeading } from "../components/headings";
 
 const talksQuery = graphql`
-  query MyQuery {
+  query TalksAndBio {
     allTalksJson {
       edges {
         node {
@@ -22,58 +22,56 @@ const talksQuery = graphql`
         }
       }
     }
+    bioJson {
+      speakerBio
+    }
   }
 `;
+
+type FullQueryReturnType = {
+  allTalksJson: TalkQueryReturnType;
+  bioJson: SpeakerBioReturnType;
+};
+
 type TalkQueryReturnType = {
-  allTalksJson: {
-    edges: [
-      {
-        node: {
-          title: string;
-          givenAt: [
-            {
-              link: string;
-              name: string;
-              date: string;
-            }
-          ];
-          abstract: string;
-        };
-      }
-    ];
-  };
+  edges: [
+    {
+      node: {
+        title: string;
+        givenAt: [
+          {
+            link: string;
+            name: string;
+            date: string;
+          }
+        ];
+        abstract: string;
+      };
+    }
+  ];
 };
 
 const Box = styled.div`
   border: 2px solid ${HighlightColor};
   padding: 1rem;
 `;
-const bioQuery = graphql`
-  query SpeakerBio {
-    bioJson {
-      speakerBio
-    }
-  }
-`;
 type SpeakerBioReturnType = {
-  bioJson: {
-    id: string;
-    speakerBio: string;
-  };
+  id: string;
+  speakerBio: string;
 };
 const Bio = ({ bioData }: { bioData: SpeakerBioReturnType }): JSX.Element => {
   return (
     <section>
       <h1>Speaker Bio</h1>
       <Box>
-        <p>{bioData.bioJson.speakerBio}</p>
+        <p>{bioData.speakerBio}</p>
       </Box>
     </section>
   );
 };
 
-const objectify = (graph: TalkQueryReturnType): Array<Talk> => {
-  const x = graph.allTalksJson.edges.map(y => y.node);
+const objectifyTalks = (graph: TalkQueryReturnType): Array<Talk> => {
+  const x = graph.edges.map(y => y.node);
   return x.map(y => ({
     ...y,
     givenAt: y.givenAt.map(z => ({ ...z, date: new Date(z.date) })),
@@ -141,7 +139,8 @@ const NotSpeaking = () => (
 );
 
 const IndexPage = () => {
-  const talks = objectify(useStaticQuery(talksQuery));
+  const queryResponse: FullQueryReturnType = useStaticQuery(talksQuery);
+  const talks = objectifyTalks(queryResponse.allTalksJson);
   const talkIntances: DateBasedTalk[] = talks.flatMap(talk =>
     talk.givenAt.map(event => ({
       eventName: event.name,
@@ -151,13 +150,12 @@ const IndexPage = () => {
     }))
   );
   talkIntances.sort((x, y) => y.date.valueOf() - x.date.valueOf());
-  const bioData = useStaticQuery(bioQuery);
 
   return (
     <Layout>
       <SEO title="Talks" />
       <NotSpeaking />
-      <Bio bioData={bioData} />
+      <Bio bioData={queryResponse.bioJson} />
       <PageHeading>Past Talks</PageHeading>
       <TalksGrid talks={talkIntances} />
     </Layout>
