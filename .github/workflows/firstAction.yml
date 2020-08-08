@@ -39,6 +39,7 @@ jobs:
           name: build
           path: build.tar.gz
   deploy:
+    runs-on: ubuntu-latest
     needs:
       - build
     steps:
