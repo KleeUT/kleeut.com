@@ -112,6 +112,7 @@ AWS provide an action to configure the AWS CLI on an agent so that it can be use
 ```
 
 This step requires that secrets about the AWS account are available. These are made available by uploading through the Github console. Once uploaded these secrets are available in the Action.
+![Github secrets configuration](https://dev-to-uploads.s3.amazonaws.com/i/a915qf6qew179o77e18e.png)
 
 ### Upload using AWS CLI
 
@@ -139,3 +140,7 @@ With this my target CI/CD system for this website was set up. I"m able to build 
 # Final Thoughts
 
 I'm a bit late to the party but Github actions are a great tool. The fact that they are free (to a point) for projects developed in the open means that I don't have an excuse not to be including CI and CD as part of my build process for every silly little side project that I take on.
+
+---
+
+The code for all of this can be found in the [kleeut.com repo on Github](https://github.com/KleeUT/kleeut.com)

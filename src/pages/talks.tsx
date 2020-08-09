@@ -4,7 +4,7 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import styled from "styled-components";
-import { PrimaryColor, HighlightColor } from "../colors";
+import { PrimaryColor, SecondaryColor } from "../colors";
 import { PageHeading } from "../components/headings";
 
 const talksQuery = graphql`
@@ -52,9 +52,11 @@ type TalkQueryReturnType = {
 };
 
 const Box = styled.div`
-  border: 2px solid ${HighlightColor};
-  padding: 1rem;
+  border: 2px solid ${SecondaryColor};
+  padding: 1.5rem;
+  background-color: rgba(0, 0, 0, 1);
 `;
+
 type SpeakerBioReturnType = {
   id: string;
   speakerBio: string;
@@ -62,7 +64,7 @@ type SpeakerBioReturnType = {
 const Bio = ({ bioData }: { bioData: SpeakerBioReturnType }): JSX.Element => {
   return (
     <section>
-      <h1>Speaker Bio</h1>
+      <PageHeading>Speaker Bio</PageHeading>
       <Box>
         <p>{bioData.speakerBio}</p>
       </Box>
@@ -78,6 +80,7 @@ const objectifyTalks = (graph: TalkQueryReturnType): Array<Talk> => {
   }));
 };
 const TalksTable = styled.table`
+  width: 100%;
   border-collapse: collapse;
   tr {
   }
@@ -134,10 +137,6 @@ interface DateBasedTalk {
   link: string;
 }
 
-const NotSpeaking = () => (
-  <p>Thanks to COVID 19 I&#39;m not currently speaking :(</p>
-);
-
 const IndexPage = () => {
   const queryResponse: FullQueryReturnType = useStaticQuery(talksQuery);
   const talks = objectifyTalks(queryResponse.allTalksJson);
@@ -154,7 +153,6 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Talks" />
-      <NotSpeaking />
       <Bio bioData={queryResponse.bioJson} />
       <PageHeading>Past Talks</PageHeading>
       <TalksGrid talks={talkIntances} />
