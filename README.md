@@ -15,8 +15,8 @@ npm run develop
 
 # Continuous integration
 
-CI is not yet running.
+Gatsby build, linting and prettier are run on every branch push via Github Actions.
 
 # Production Builds
 
-Production builds are not yet running.
+When deployed to the `main` branch the CI step is run and then the code is deployed to S3.
