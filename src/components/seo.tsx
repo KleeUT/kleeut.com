@@ -78,6 +78,7 @@ function SEO({
           content: metaDescription,
         },
       ].concat(meta)}
+      link={[{ rel: "icon", type: "image/png", href: "favicon.png" }]}
     />
   );
 }
