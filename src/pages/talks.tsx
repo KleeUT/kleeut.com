@@ -1,9 +1,11 @@
 import React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
+import styled from "styled-components";
+
+import { useStaticQuery, graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
-import styled from "styled-components";
+import { ExternalLink } from "../components/link";
 import { PrimaryColor, SecondaryColor } from "../colors";
 import { PageHeading } from "../components/headings";
 
@@ -107,6 +109,19 @@ const TalksTable = styled.table`
   }
 `;
 
+const TextOrLink = ({
+  text,
+  link,
+}: {
+  text: string;
+  link?: string;
+}): JSX.Element => {
+  if (link) {
+    return <ExternalLink href={link}>{text}</ExternalLink>;
+  }
+  return <>{text}</>;
+};
+
 const TalksGrid = ({ talks }: { talks: Array<DateBasedTalk> }) => (
   <TalksTable>
     <thead>
@@ -121,7 +136,9 @@ const TalksGrid = ({ talks }: { talks: Array<DateBasedTalk> }) => (
         return (
           <tr key={`${talk.title}${talk.eventName}`}>
             <td>{talk.date.toLocaleDateString()}</td>
-            <td>{talk.title}</td>
+            <td>
+              <TextOrLink text={talk.title} link={talk.link}></TextOrLink>
+            </td>
             <td>{talk.eventName}</td>
           </tr>
         );
