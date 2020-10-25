@@ -84,5 +84,14 @@
         "date": "2017/06/07"
       }
     ]
+  },
+  {
+    "title": "Learn Auth0 to secure your applications (Workshop)",
+    "givenAt": [
+      {
+        "name": "Blast Furnace",
+        "date": "2020/11/12"
+      }
+    ]
   }
 ]
