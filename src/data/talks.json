@@ -93,5 +93,18 @@
         "date": "2020/11/12"
       }
     ]
+  },
+  {
+    "title": "Passwordless Authentication",
+    "givenAt": [
+      {
+        "name": "Melbourne/Sydney/Singapore/Bangalore Identity and Security Meetup",
+        "date": "2020/12/9"
+      }
+    ]
+  },
+  {
+    "title": "Newwwie Tech Trivia 2020",
+    "givenAt": [{ "name": "Blast Furnace + online", "date": "2020/12/10" }]
   }
 ]
