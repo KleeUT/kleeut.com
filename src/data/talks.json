@@ -106,5 +106,18 @@
   {
     "title": "Newwwie Tech Trivia 2020",
     "givenAt": [{ "name": "Blast Furnace + online", "date": "2020/12/10" }]
+  },
+  {
+    "title": "Is your user still your user? Find out with Step Up Authentication",
+    "givenAt": [
+      {
+        "name": "Newcastle Coders Group",
+        "date": "2021/05/26"
+      },
+      {
+        "name": "Sydney Identity and Security Meetup",
+        "date": "2021/05/27"
+      }
+    ]
   }
 ]
