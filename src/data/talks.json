@@ -140,5 +140,18 @@
         "date": "2022/06/23"
       }
     ]
+  },
+  {
+    "title": "Tokens, tokens everywhere: a deep dive on JWT",
+    "givenAt": [
+      {
+        "name": "Newcastle JS",
+        "date": "2022/09/28"
+      },
+      {
+        "name": "Newcastle Cyber Security Group",
+        "date": "2022/10/27"
+      }
+    ]
   }
 ]
