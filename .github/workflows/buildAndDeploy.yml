@@ -21,20 +21,18 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2 # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/setup-node@v2-beta
+      - uses: actions/setup-node@v3
         with:
-          node-version: "12"
-      - name: NPM Install
-        run: npm install
-      # - name: Run Jest #:( WHy no tests klee
-      #   run: npm test
+          node-version: "18"
+      - name: Yarn
+        run: yarn
       - name: Run Lint
         run: npm run lint
       - name: Run Prettier
         run: npm run prettier:check
       - name: Gatsby Build
         run: npm run build
-      - name: zip build resulit
+      - name: zip build result
         run: tar -czvf build.tar.gz public
       - name: archive zip
         uses: actions/upload-artifact@v2
