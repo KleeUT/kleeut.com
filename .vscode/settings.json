@@ -1,6 +1,3 @@
 {
-  "editor.formatOnSave": true,
-  "editor.tabSize": 2,
-  "prettier.endOfLine": "lf",
-  "files.eol": "\n"
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
