@@ -75,10 +75,10 @@ const Bio = ({ bioData }: { bioData: SpeakerBioReturnType }): JSX.Element => {
 };
 
 const objectifyTalks = (graph: TalkQueryReturnType): Array<Talk> => {
-  const x = graph.edges.map(y => y.node);
-  return x.map(y => ({
+  const x = graph.edges.map((y) => y.node);
+  return x.map((y) => ({
     ...y,
-    givenAt: y.givenAt.map(z => ({ ...z, date: new Date(z.date) })),
+    givenAt: y.givenAt.map((z) => ({ ...z, date: new Date(z.date) })),
   }));
 };
 const TalksTable = styled.table`
@@ -132,7 +132,7 @@ const TalksGrid = ({ talks }: { talks: Array<DateBasedTalk> }) => (
       </tr>
     </thead>
     <tbody>
-      {talks.map(talk => {
+      {talks.map((talk) => {
         return (
           <tr key={`${talk.title}${talk.eventName}`}>
             <td>{talk.date.toLocaleDateString()}</td>
@@ -157,8 +157,8 @@ interface DateBasedTalk {
 const IndexPage = () => {
   const queryResponse: FullQueryReturnType = useStaticQuery(talksQuery);
   const talks = objectifyTalks(queryResponse.allTalksJson);
-  const talkIntances: DateBasedTalk[] = talks.flatMap(talk =>
-    talk.givenAt.map(event => ({
+  const talkIntances: DateBasedTalk[] = talks.flatMap((talk) =>
+    talk.givenAt.map((event) => ({
       eventName: event.name,
       date: event.date,
       link: event.link,
