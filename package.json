@@ -13,7 +13,12 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "typecheck": "tsc --noEmit"
+    "type-check": "tsc --rootDir src --noEmit",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prettier:check": "prettier --check ./**/*.json ./**/*.tsx ./**/*.ts",
+    "prettier:write": "prettier --write ./**/*.json ./**/*.tsx ./**/*.ts",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^2.0.7",
