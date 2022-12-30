@@ -5,7 +5,7 @@ import { ExternalLinkButton } from "../components/button";
 import SEO from "../components/seo";
 
 const linksQuery = graphql`
-  query FIndMeLinksQuery {
+  query FindMeLinksQuery {
     allFindMeJson {
       edges {
         node {
@@ -30,7 +30,7 @@ interface LinksQueryResult {
 }
 
 function objectify(queryData: LinksQueryResult): FindMeLink[] {
-  return queryData.allFindMeJson.edges.map(r => r.node);
+  return queryData.allFindMeJson.edges.map((r) => r.node);
 }
 const FindMe = (): JSX.Element => {
   const data = objectify(useStaticQuery(linksQuery));
@@ -39,7 +39,7 @@ const FindMe = (): JSX.Element => {
     <Layout>
       <SEO title="Find Me"></SEO>
       <Content>
-        {data.map(d => (
+        {data.map((d) => (
           <ExternalLinkButton key={d.target} href={d.target}>
             {d.title}
           </ExternalLinkButton>
