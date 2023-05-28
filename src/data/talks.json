@@ -151,6 +151,19 @@
       {
         "name": "Newcastle Cyber Security Group",
         "date": "2022/10/27"
+      },
+      {
+        "name": "Newcastle Coders Group",
+        "date": "2023/06/07"
+      }
+    ]
+  },
+  {
+    "title": "Authorisation and access across applications; a guide to OAuth 2",
+    "givenAt": [
+      {
+        "name": "../NEW",
+        "date": "2023/03/23"
       }
     ]
   }
