@@ -166,5 +166,14 @@
         "date": "2023/03/23"
       }
     ]
+  },
+  {
+    "title": "Dev Superpowers: Unit Testing",
+    "givenAt": [
+      {
+        "name": "Newcastle Coders Group",
+        "date": "2023/11/01"
+      }
+    ]
   }
 ]
