@@ -7,15 +7,13 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import { useStaticQuery, graphql } from "gatsby";
 import {
   BackgroundColorDark,
   TextColor,
   BackgroundColorLight,
 } from "../colors";
-import Header from "./header";
-// import "./layout.css";
 import styled, { createGlobalStyle } from "styled-components";
+import { gears } from "./gears-svg";
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -23,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
     padding:0;
     margin:0;
     font-size:16px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
   }
   
   html{
@@ -41,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-size: 1rem;
     background: linear-gradient(135deg, ${BackgroundColorLight},${BackgroundColorDark});
-    font-family: sans-serif;
+    background-image: ${gears};
     padding:0;
     margin:0;
     color: ${TextColor};
@@ -52,7 +51,7 @@ const GlobalStyle = createGlobalStyle`
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 100px 1fr auto;
+  grid-template-rows: 1fr auto;
   height: 100%;
 `;
 
@@ -60,32 +59,15 @@ const FullHeight = styled.div`
   height: 100%;
 `;
 const Main = styled.main`
-  max-width: 1020px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 1rem;
 `;
-const Footer = styled.footer`
-  max-height: 1rem;
-  border-top: 3px solid #ff0000;
-`;
-const Layout = ({ children }: { children: React.ReactNode }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
 
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <FullHeight>
       <GlobalStyle />
       <Container>
-        <Header siteTitle={data.site.siteMetadata.title} />
         <Main>{children}</Main>
-        <Footer></Footer>
       </Container>
     </FullHeight>
   );
