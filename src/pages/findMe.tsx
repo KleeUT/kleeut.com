@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import Layout, { Content } from "../components/layout";
 import { ExternalLinkButton } from "../components/button";
 import SEO from "../components/seo";
+import { LinkPage } from "../components/link-page";
 
 const linksQuery = graphql`
   query FindMeLinksQuery {
@@ -38,12 +39,14 @@ const FindMe = (): JSX.Element => {
   return (
     <Layout>
       <SEO title="Find Me"></SEO>
-      <Content>
-        {data.map((d) => (
-          <ExternalLinkButton key={d.target} href={d.target}>
-            {d.title}
-          </ExternalLinkButton>
-        ))}
+      <Content withHeader={true}>
+        <LinkPage
+          links={data}
+          heading={"You can find me here"}
+          subtext={
+            "In most places you can find me as @thekleetest, older places might still be @kleeut."
+          }
+        />
       </Content>
     </Layout>
   );

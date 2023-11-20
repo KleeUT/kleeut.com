@@ -7,25 +7,34 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  BackgroundColorDark,
-  TextColor,
-  BackgroundColorLight,
-} from "../colors";
 import styled, { createGlobalStyle } from "styled-components";
 import { gears } from "./gears-svg";
+import { windowBreakpoint } from "../spacing";
+import { HeaderNav } from "./header-nav";
 
 const GlobalStyle = createGlobalStyle`
+
   *{
     box-sizing:border-box;
     padding:0;
     margin:0;
-    font-size:16px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    font-size:18pt;
+    font-family: roboto, sans-serif;
+  }
+
+  @media (max-width:${windowBreakpoint}) {
+    font-size:8pt;
   }
   
   html{
+    --text-color: black;
+    --gradient-background: linear-gradient(
+    90deg,
+    rgb(213, 136, 255) 0%,
+    rgb(226, 164, 255) 100%
+  );
     height:100%;
+    width:100vw;
   }  
    body {
     height:100%;
@@ -38,14 +47,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-size: 1rem;
-    background: linear-gradient(135deg, ${BackgroundColorLight},${BackgroundColorDark});
+    /* background-color: #eee; */
     background-image: ${gears};
     padding:0;
     margin:0;
-    color: ${TextColor};
+    color: var(--text-color);
     height: 100%;
-    line-height:1.5rem;
+    line-height:1.5rem;o
   }
 `;
 
@@ -53,6 +61,7 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 1fr auto;
   height: 100%;
+  width: 100%;
 `;
 
 const FullHeight = styled.div`
@@ -60,6 +69,7 @@ const FullHeight = styled.div`
 `;
 const Main = styled.main`
   padding: 1rem;
+  width: 100%;
 `;
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -77,12 +87,23 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export const Content = styled.div`
+const ContentStyle = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
 `;
+
+export const Content = ({
+  children,
+  withHeader,
+}: React.PropsWithChildren<{ withHeader: boolean }>) => {
+  return (
+    <ContentStyle>
+      {withHeader ? <HeaderNav /> : null}
+      {children}
+    </ContentStyle>
+  );
+};
 
 export default Layout;
