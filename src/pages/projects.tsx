@@ -2,7 +2,6 @@ import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import Layout, { Content } from "../components/layout";
 import SEO from "../components/seo";
-import { HeaderNav } from "../components/header-nav";
 import { LinkPage } from "../components/link-page";
 
 const linksQuery = graphql`

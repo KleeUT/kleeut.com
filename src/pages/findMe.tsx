@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import Layout, { Content } from "../components/layout";
-import { ExternalLinkButton } from "../components/button";
 import SEO from "../components/seo";
 import { LinkPage } from "../components/link-page";
 

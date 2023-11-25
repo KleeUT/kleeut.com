@@ -3,12 +3,11 @@ import styled from "styled-components";
 
 import { useStaticQuery, graphql } from "gatsby";
 
-import Layout from "../components/layout";
+import Layout, { Content } from "../components/layout";
 import SEO from "../components/seo";
 import { ExternalLink } from "../components/link";
-import { PrimaryColor, SecondaryColor } from "../colors";
-import { PageHeading } from "../components/headings";
-
+import { PageHeading, SubHeading, MinorHeading } from "../components/headings";
+import format from "date-fns/format";
 const talksQuery = graphql`
   query TalksAndBio {
     allTalksJson {
@@ -53,12 +52,6 @@ type TalkQueryReturnType = {
   ];
 };
 
-const Box = styled.div`
-  border: 2px solid ${SecondaryColor};
-  padding: 1.5rem;
-  background-color: rgba(0, 0, 0, 1);
-`;
-
 type SpeakerBioReturnType = {
   id: string;
   speakerBio: string;
@@ -66,10 +59,8 @@ type SpeakerBioReturnType = {
 const Bio = ({ bioData }: { bioData: SpeakerBioReturnType }): JSX.Element => {
   return (
     <section>
-      <PageHeading>Speaker Bio</PageHeading>
-      <Box>
-        <p>{bioData.speakerBio}</p>
-      </Box>
+      <SubHeading>Speaker Bio</SubHeading>
+      <p>{bioData.speakerBio}</p>
     </section>
   );
 };
@@ -81,33 +72,6 @@ const objectifyTalks = (graph: TalkQueryReturnType): Array<Talk> => {
     givenAt: y.givenAt.map((z) => ({ ...z, date: new Date(z.date) })),
   }));
 };
-const TalksTable = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  tr {
-  }
-  td:first-of-type,
-  th:first-of-type {
-    border-left: 0;
-  }
-  tr:last-of-type {
-    td {
-      border-bottom: 0;
-    }
-  }
-  td,
-  th {
-    padding: 1rem;
-    border-bottom: 1px solid ${PrimaryColor};
-    border-left: 1px solid ${PrimaryColor};
-  }
-  th {
-    /* visibility: hidden; */
-    padding: 0 1rem 1rem 1rem;
-
-    text-align: left;
-  }
-`;
 
 const TextOrLink = ({
   text,
@@ -122,29 +86,31 @@ const TextOrLink = ({
   return <>{text}</>;
 };
 
-const TalksGrid = ({ talks }: { talks: Array<DateBasedTalk> }) => (
-  <TalksTable>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Talk</th>
-        <th>Event</th>
-      </tr>
-    </thead>
-    <tbody>
+const TalkBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const TalksDisplay = ({ talks }: { talks: Array<DateBasedTalk> }) => (
+  <section>
+    <SubHeading>Past Talks</SubHeading>
+    <TalkBox>
       {talks.map((talk) => {
         return (
-          <tr key={`${talk.title}${talk.eventName}`}>
-            <td>{talk.date.toLocaleDateString()}</td>
-            <td>
+          <div key={`${talk.title}${talk.eventName}`}>
+            <MinorHeading>
               <TextOrLink text={talk.title} link={talk.link}></TextOrLink>
-            </td>
-            <td>{talk.eventName}</td>
-          </tr>
+            </MinorHeading>
+            <p>
+              at: {talk.eventName} <br />
+              on: <span>{format(talk.date, "dd LLLL yyyy")}</span>
+            </p>
+          </div>
         );
       })}
-    </tbody>
-  </TalksTable>
+    </TalkBox>
+  </section>
 );
 
 interface DateBasedTalk {
@@ -157,7 +123,7 @@ interface DateBasedTalk {
 const IndexPage = () => {
   const queryResponse: FullQueryReturnType = useStaticQuery(talksQuery);
   const talks = objectifyTalks(queryResponse.allTalksJson);
-  const talkIntances: DateBasedTalk[] = talks.flatMap((talk) =>
+  const talkInstances: DateBasedTalk[] = talks.flatMap((talk) =>
     talk.givenAt.map((event) => ({
       eventName: event.name,
       date: event.date,
@@ -165,14 +131,16 @@ const IndexPage = () => {
       title: talk.title,
     }))
   );
-  talkIntances.sort((x, y) => y.date.valueOf() - x.date.valueOf());
+  talkInstances.sort((x, y) => y.date.valueOf() - x.date.valueOf());
 
   return (
     <Layout>
-      <SEO title="Talks" />
-      <Bio bioData={queryResponse.bioJson} />
-      <PageHeading>Past Talks</PageHeading>
-      <TalksGrid talks={talkIntances} />
+      <SEO title="Speaking" />
+      <Content withHeader={true}>
+        <PageHeading>Speaking</PageHeading>
+        <Bio bioData={queryResponse.bioJson} />
+        <TalksDisplay talks={talkInstances} />
+      </Content>
     </Layout>
   );
 };

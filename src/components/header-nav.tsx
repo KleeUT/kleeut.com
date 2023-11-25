@@ -7,6 +7,9 @@ const BackHeader = styled.nav`
   height: 2rem;
   display: flex;
   gap: 0.5rem;
+  position: sticky;
+  top: 0;
+  background: white;
 `;
 
 const DontDisplayForMobileMenuItem = styled(MenuItem)`

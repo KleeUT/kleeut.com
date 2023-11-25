@@ -47,13 +47,12 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    /* background-color: #eee; */
     background-image: ${gears};
     padding:0;
     margin:0;
     color: var(--text-color);
     height: 100%;
-    line-height:1.5rem;o
+    line-height:1.5rem;
   }
 `;
 
@@ -91,7 +90,10 @@ const ContentStyle = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  /* align-items:start; */
+  max-width: 1024px;
+  margin: auto;
 `;
 
 export const Content = ({
@@ -99,7 +101,7 @@ export const Content = ({
   withHeader,
 }: React.PropsWithChildren<{ withHeader: boolean }>) => {
   return (
-    <ContentStyle>
+    <ContentStyle {...{ withHeader }}>
       {withHeader ? <HeaderNav /> : null}
       {children}
     </ContentStyle>
