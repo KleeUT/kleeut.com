@@ -1,8 +1,8 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import Layout, { Content } from "../components/layout";
-import { ExternalLinkButton } from "../components/button";
 import SEO from "../components/seo";
+import { LinkPage } from "../components/link-page";
 
 const linksQuery = graphql`
   query ProjectLinksQuery {
@@ -32,18 +32,20 @@ interface LinksQueryResult {
 function objectify(queryData: LinksQueryResult): ProjectsLink[] {
   return queryData.allProjectsJson.edges.map((r) => r.node);
 }
+
 const FindMe = (): JSX.Element => {
   const data = objectify(useStaticQuery(linksQuery));
 
   return (
     <Layout>
       <SEO title="Find Me"></SEO>
-      <Content>
-        {data.map((d) => (
-          <ExternalLinkButton key={d.target} href={d.target}>
-            {d.title}
-          </ExternalLinkButton>
-        ))}
+      <Content withHeader={true}>
+        <LinkPage
+          links={data}
+          heading="Stupid Projects"
+          subtext="      I love a stupid weekend project. These are just for fun. You can assume
+      they are pretty much abandonware."
+        />
       </Content>
     </Layout>
   );

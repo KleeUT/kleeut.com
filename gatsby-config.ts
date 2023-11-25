@@ -45,6 +45,22 @@ const config: GatsbyConfig = {
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-omni-font-loader`,
+      options: {
+        enableListener: true,
+        preconnect: [
+          `https://fonts.googleapis.com`,
+          `https://fonts.gstatic.com`,
+        ],
+        web: [
+          {
+            name: `roboto`,
+            file: `https://fonts.googleapis.com/css2?family=Roboto&display=swap`,
+          },
+        ],
+      },
+    },
   ],
 };
 

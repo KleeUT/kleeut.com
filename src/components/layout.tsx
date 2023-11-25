@@ -7,26 +7,34 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import { useStaticQuery, graphql } from "gatsby";
-import {
-  BackgroundColorDark,
-  TextColor,
-  BackgroundColorLight,
-} from "../colors";
-import Header from "./header";
-// import "./layout.css";
 import styled, { createGlobalStyle } from "styled-components";
+import { gears } from "./gears-svg";
+import { windowBreakpoint } from "../spacing";
+import { HeaderNav } from "./header-nav";
 
 const GlobalStyle = createGlobalStyle`
+
   *{
     box-sizing:border-box;
     padding:0;
     margin:0;
-    font-size:16px;
+    font-size:18pt;
+    font-family: roboto, sans-serif;
+  }
+
+  @media (max-width:${windowBreakpoint}) {
+    font-size:8pt;
   }
   
   html{
+    --text-color: black;
+    --gradient-background: linear-gradient(
+    90deg,
+    rgb(213, 136, 255) 0%,
+    rgb(226, 164, 255) 100%
+  );
     height:100%;
+    width:100vw;
   }  
    body {
     height:100%;
@@ -39,12 +47,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-size: 1rem;
-    background: linear-gradient(135deg, ${BackgroundColorLight},${BackgroundColorDark});
-    font-family: sans-serif;
+    background-image: ${gears};
     padding:0;
     margin:0;
-    color: ${TextColor};
+    color: var(--text-color);
     height: 100%;
     line-height:1.5rem;
   }
@@ -52,40 +58,25 @@ const GlobalStyle = createGlobalStyle`
 
 const Container = styled.div`
   display: grid;
-  grid-template-rows: 100px 1fr auto;
+  grid-template-rows: 1fr auto;
   height: 100%;
+  width: 100%;
 `;
 
 const FullHeight = styled.div`
   height: 100%;
 `;
 const Main = styled.main`
-  max-width: 1020px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 1rem;
+  width: 100%;
 `;
-const Footer = styled.footer`
-  max-height: 1rem;
-  border-top: 3px solid #ff0000;
-`;
-const Layout = ({ children }: { children: React.ReactNode }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
 
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <FullHeight>
       <GlobalStyle />
       <Container>
-        <Header siteTitle={data.site.siteMetadata.title} />
         <Main>{children}</Main>
-        <Footer></Footer>
       </Container>
     </FullHeight>
   );
@@ -95,12 +86,26 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export const Content = styled.div`
+const ContentStyle = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  /* align-items:start; */
+  max-width: 1024px;
+  margin: auto;
 `;
+
+export const Content = ({
+  children,
+  withHeader,
+}: React.PropsWithChildren<{ withHeader: boolean }>) => {
+  return (
+    <ContentStyle {...{ withHeader }}>
+      {withHeader ? <HeaderNav /> : null}
+      {children}
+    </ContentStyle>
+  );
+};
 
 export default Layout;
