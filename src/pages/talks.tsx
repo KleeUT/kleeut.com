@@ -8,6 +8,8 @@ import SEO from "../components/seo";
 import { ExternalLink } from "../components/link";
 import { PageHeading, SubHeading, MinorHeading } from "../components/headings";
 import format from "date-fns/format";
+import isBefore from "date-fns/isBefore";
+import isAfter from "date-fns/isAfter";
 const talksQuery = graphql`
   query TalksAndBio {
     allTalksJson {
@@ -94,23 +96,25 @@ const TalkBox = styled.div`
 
 const TalksDisplay = ({ talks }: { talks: Array<DateBasedTalk> }) => (
   <section>
+    <SubHeading>Upcoming Talks</SubHeading>
+    {talks.filter((talk) => isAfter(talk.date, Date.now())).map(talkDisplay)}
     <SubHeading>Past Talks</SubHeading>
     <TalkBox>
-      {talks.map((talk) => {
-        return (
-          <div key={`${talk.title}${talk.eventName}`}>
-            <MinorHeading>
-              <TextOrLink text={talk.title} link={talk.link}></TextOrLink>
-            </MinorHeading>
-            <p>
-              at: {talk.eventName} <br />
-              on: <span>{format(talk.date, "dd LLLL yyyy")}</span>
-            </p>
-          </div>
-        );
-      })}
+      {talks.filter((talk) => isBefore(talk.date, Date.now())).map(talkDisplay)}
     </TalkBox>
   </section>
+);
+
+const talkDisplay = (talk: DateBasedTalk) => (
+  <div key={`${talk.title}${talk.eventName}`}>
+    <MinorHeading>
+      <TextOrLink text={talk.title} link={talk.link}></TextOrLink>
+    </MinorHeading>
+    <p>
+      at: {talk.eventName} <br />
+      on: <span>{format(talk.date, "dd LLLL yyyy")}</span>
+    </p>
+  </div>
 );
 
 interface DateBasedTalk {
