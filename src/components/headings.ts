@@ -6,8 +6,10 @@ export const PageHeading = styled.h1`
 export const SubHeading = styled.h2`
   font-size: 1.5rem;
   margin-top: 1.5rem;
+  margin-bottom: 0.7rem;
 `;
 
 export const MinorHeading = styled.h3`
   font-size: 1.3rem;
+  margin-bottom: 0.2rem;
 `;
