@@ -175,5 +175,22 @@
         "date": "2023/11/01"
       }
     ]
+  },
+  {
+    "title": "Optimising for done: My experiences with mob programming",
+    "givenAt": [
+      {
+        "name": "Newcastle Coders Group",
+        "date": "2024/06/05"
+      },
+      {
+        "name": "YOW! Tech Leaders Brisbane",
+        "date": "2024/09/11"
+      },
+      {
+        "name": "YOW! Tech Leaders Sydney",
+        "date": "2024/09/12"
+      }
+    ]
   }
 ]
