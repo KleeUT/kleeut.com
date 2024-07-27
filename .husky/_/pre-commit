@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/h"
+yarn prettier:check
+yarn lint
