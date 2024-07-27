@@ -17,7 +17,10 @@ const shared = css`
   box-shadow: 0.1rem 0.1rem ${HighlightColor};
   width: 100%;
 
-  transition: border-width 250ms ease, margin 250ms ease, box-shadow 250ms;
+  transition:
+    border-width 250ms ease,
+    margin 250ms ease,
+    box-shadow 250ms;
   :hover {
     box-shadow: 0.2rem 0.2rem 0.1rem ${HighlightColor};
   }
