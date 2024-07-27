@@ -7,9 +7,9 @@ import Layout, { Content } from "../components/layout";
 import SEO from "../components/seo";
 import { ExternalLink } from "../components/link";
 import { PageHeading, SubHeading, MinorHeading } from "../components/headings";
-import format from "date-fns/format";
-import isBefore from "date-fns/isBefore";
-import isAfter from "date-fns/isAfter";
+import { format } from "date-fns/format";
+import { isBefore } from "date-fns/isBefore";
+import { isAfter } from "date-fns/isAfter";
 const talksQuery = graphql`
   query TalksAndBio {
     allTalksJson {
@@ -46,11 +46,11 @@ type TalkQueryReturnType = {
             link: string;
             name: string;
             date: string;
-          },
+          }
         ];
         abstract: string;
       };
-    },
+    }
   ];
 };
 
@@ -133,7 +133,7 @@ const IndexPage = () => {
       date: event.date,
       link: event.link,
       title: talk.title,
-    })),
+    }))
   );
   talkInstances.sort((x, y) => y.date.valueOf() - x.date.valueOf());
 
