@@ -14,7 +14,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "type-check": "tsc --rootDir src --noEmit",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint .",
     "prettier:check": "prettier --check ./**/*.json ./**/*.tsx ./**/*.ts",
     "prettier:write": "prettier --write ./**/*.json ./**/*.tsx ./**/*.ts",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
@@ -39,19 +39,22 @@
     "styled-components": "^6.1.12"
   },
   "devDependencies": {
+    "@eslint/js": "^9.8.0",
     "@types/node": "^20.2.5",
     "@types/react": "^18.2.7",
     "@types/react-dom": "^18.2.4",
     "@typescript-eslint/eslint-plugin": "^7.17.0",
     "@typescript-eslint/parser": "^7.17.0",
-    "eslint": "^9.8.0",
+    "eslint": "9.x",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react": "^7.35.0",
     "gatsby-plugin-manifest": "^5.10.0",
     "gatsby-transformer-json": "^5.10.0",
+    "globals": "^15.8.0",
     "husky": "^9.1.3",
     "prettier": "^3.3.3",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "typescript-eslint": "^7.17.0"
   }
 }
