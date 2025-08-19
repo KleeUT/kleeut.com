@@ -5,6 +5,10 @@
     "title": "Newcastle Coders Group Meetup",
     "target": "https://www.meetup.com/Newcastle-Coders-Group/"
   },
+  {
+    "title": "Bluesky",
+    "target": "https://bsky.app/profile/thekleetest.bsky.social"
+  },
   { "title": "X nee Twitter", "target": "https://twitter.com/thekleetest" },
   { "title": "Dev.to", "target": "https://dev.to/kleeut" },
   { "title": "Blog", "target": "https://blog.kleeut.com" }
