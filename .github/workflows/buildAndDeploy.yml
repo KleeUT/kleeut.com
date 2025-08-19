@@ -35,7 +35,7 @@ jobs:
       - name: zip build result
         run: tar -czvf build.tar.gz public
       - name: archive zip
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: build
           path: build.tar.gz
@@ -46,7 +46,7 @@ jobs:
       - build
     steps:
       - name: download artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: build
       - name: extract build
