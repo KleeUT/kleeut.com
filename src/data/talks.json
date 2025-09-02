@@ -201,5 +201,14 @@
         "date": "2025/06/04"
       }
     ]
+  },
+  {
+    "title": "Scrapping the scrapers: defending the web from crawlers.",
+    "givenAt": [
+      {
+        "name": "Newcastle Coders Group",
+        "date": "2025/07/03"
+      }
+    ]
   }
 ]
