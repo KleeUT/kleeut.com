@@ -5,5 +5,6 @@
     "title": "Drink Calculator",
     "target": "https://drinkcalculator.kleeut.com/"
   },
-  { "title": "Stupid Estimator", "target": "https://estimator.kleeut.com/" }
+  { "title": "Stupid Estimator", "target": "https://estimator.kleeut.com/" },
+  { "title": "find-a-moo", "target": "https://find-a-moo.kleeut.com/" }
 ]
